@@ -35,40 +35,40 @@ const HOTSPOTS: Hotspot[] = [
   {
     id: "orange-monster",
     label: "มอนสเตอร์สีส้มด้านซ้าย",
-    left: "2%",
-    top: "15%",
-    width: "60%",
-    height: "60%",
+    left: "10%",
+    top: "22%",
+    width: "45%",
+    height: "45%",
     monster: "orange",
     shadowSrc: "/pieces/shadow-orange.png",
   },
   {
     id: "left-shadow",
     label: "เงาด้านล่างฝั่งซ้าย",
-    left: "10%",
-    top: "48%",
-    width: "55%",
-    height: "55%",
+    left: "16%",
+    top: "50%",
+    width: "45%",
+    height: "45%",
     monster: "white",
     shadowSrc: "/pieces/shadow-white.png",
   },
   {
     id: "top-right-shadow",
     label: "เงาด้านบนฝั่งขวา",
-    left: "48%",
-    top: "-6%",
-    width: "90%",
-    height: "75%",
+    left: "67%",
+    top: "7%",
+    width: "45%",
+    height: "45%",
     monster: "purple",
     shadowSrc: "/pieces/shadow-purple.png",
   },
   {
     id: "mid-right-shadow",
     label: "เงาด้านขวา",
-    left: "65%",
-    top: "45%",
-    width: "65%",
-    height: "55%",
+    left: "67%",
+    top: "43%",
+    width: "45%",
+    height: "45%",
     monster: "blue",
     shadowSrc: "/pieces/shadow-blue.png",
   },
@@ -120,7 +120,7 @@ export default function Home() {
 
       const resultTimer = window.setTimeout(() => {
         setScreen("result");
-      }, 3000);
+      }, 5000);
 
       return () => {
         window.clearTimeout(revealTimer);
