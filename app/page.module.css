@@ -1,142 +1,589 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 18px;
 }
 
-.main {
-  display: flex;
-  flex: 1;
+.frame {
+  position: relative;
+  width: min(100%, 390px);
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #121212;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+}
+
+.scene {
+  position: relative;
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  height: 100%;
+  overflow: hidden;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.fullAsset {
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
+.alleyWall {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+  height: 100%;
+  z-index: 10;
 }
 
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+.asset {
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.introScene::after,
+.searchScene::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.16));
+  content: "";
+  pointer-events: none;
+}
+
+.introSign {
+  position: absolute;
+  inset: -1% auto auto 0%;
+  width: 100%;
+  height: 25%;
+  z-index: 5;
+  transform: rotate(-2deg);
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.18));
+}
+
+.posterCluster {
+  position: absolute;
+  inset: 16% 12% auto 12%;
+  width: 76%;
+  height: 49%;
+  z-index: 2;
+  transform: rotate(-1.6deg);
+}
+
+.stickerBehind {
+  position: absolute;
+  right: -22%;
+  top: -16%;
+  width: 62%;
+  height: 55%;
+  z-index: 0;
+  transform: rotate(8deg);
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.22));
+}
+
+.posterMain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.18));
+}
+
+.tape {
+  position: absolute;
+  z-index: 3;
+  width: 18%;
+  height: 4.3%;
+  border-radius: 4px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(238, 238, 238, 0.78));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0.92;
+}
+
+.tapeTopLeft {
+  left: -1%;
+  top: 7%;
+  transform: rotate(-33deg);
+}
+
+.tapeTopRight {
+  right: 2%;
+  top: 7.5%;
+  transform: rotate(29deg);
+}
+
+.miniSticker {
+  position: absolute;
+  right: 1%;
+  top: 3%;
+  z-index: 3;
+  padding: 8px 10px 7px;
+  border-radius: 4px;
+  background: #193880;
+  color: #ffd43c;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 0.95;
+  text-align: center;
+  transform: rotate(8deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.stickerLeft {
+  position: absolute;
+  left: -7%;
+  top: 38%;
+  width: 23%;
+  height: 28%;
+  z-index: 1;
+  transform: rotate(-6deg);
+}
+
+.stickerRight {
+  position: absolute;
+  right: -4%;
+  bottom: 16%;
+  width: 28%;
+  height: 25%;
+  z-index: 1;
+  transform: rotate(10deg);
+}
+
+.imageButton {
+  position: absolute;
+  z-index: 4;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  transition: transform 180ms ease, filter 180ms ease;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.imageButton:hover {
+  transform: translateY(-2px) scale(1.015);
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.18));
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.imageButton:active {
+  transform: translateY(1px) scale(0.99);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
+.startButton {
+  left: 3%;
+  bottom: 4%;
+  width: 94%;
+  height: 12%;
+  animation: buttonFloat 2.8s ease-in-out infinite;
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05), transparent 18%),
+    radial-gradient(circle at bottom, rgba(0, 0, 0, 0.14), transparent 46%);
+  z-index: 1;
+  pointer-events: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+.orangeVisible {
+  position: absolute;
+  left: 2%;
+  top: 15%;
+  width: 60%;
+  height: 60%;
+  z-index: 5;
+  transform: rotate(-1deg);
+  filter: brightness(0);
+}
 
+.shadowPurple,
+.shadowBlue,
+.revealPurple,
+.revealBlue {
+  position: absolute;
+  z-index: 2;
+  transition:
+    opacity 320ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* These stay behind the wall (z-index 5 < alleyWall z-index 10) 
+   but overlap the monsters on the right (z-index 5 > purple/blue z-index 2) */
+.orangeVisible,
+.shadowWhite,
+.revealOrange,
+.revealWhite {
+  position: absolute;
+  z-index: 5;
+  transition:
+    opacity 320ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shadowWhite {
+  left: 10%;
+  top: 48%;
+  width: 55%;
+  height: 55%;
+  z-index: 5;
+  filter: brightness(0);
+}
+
+.shadowPurple {
+  left: 48%;
+  top: -6%;
+  width: 90%;
+  height: 75%;
+  z-index: 2;
+  filter: brightness(0);
+}
+
+.shadowBlue {
+  left: 65%;
+  top: 45%;
+  width: 65%;
+  height: 55%;
+  z-index: 2;
+  filter: brightness(0);
+}
+
+.shadowHidden {
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+.revealWhite {
+  left: 10%;
+  top: 48%;
+  width: 55%;
+  height: 55%;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(8%) scale(0.88);
+}
+
+.revealPurple {
+  left: 48%;
+  top: -6%;
+  width: 90%;
+  height: 75%;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(-8%) scale(0.88);
+}
+
+.revealBlue {
+  left: 65%;
+  top: 45%;
+  width: 65%;
+  height: 55%;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(10%) scale(0.88);
+}
+
+.revealOrange {
+  left: 5%;
+  top: 20%;
+  width: 55%;
+  height: 55%;
+  z-index: 5;
+  opacity: 0;
+  transform: translateX(-6%) scale(0.95);
+}
+
+.revealVisible {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1);
+  animation: revealGlow 760ms ease;
+}
+
+.hotspot {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.hotspot span {
+  display: inline-grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(1.55rem, 5vw, 1.95rem);
+  font-weight: 900;
+  text-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.36),
+    0 0 12px rgba(255, 255, 255, 0.18);
+  animation: markerPulse 1.9s ease-out infinite;
+}
+
+.hotspotWrong {
+  background: radial-gradient(circle, rgba(255, 50, 50, 0.45), transparent 65%);
+  animation: wrongShake 480ms ease;
+}
+
+.hotspotWrong span {
+  color: #ff5555;
+}
+
+.hotspotCorrect span {
+  color: #57f59b;
+  animation: correctPop 680ms ease forwards;
+}
+
+.searchScene::before {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  content: "";
+  pointer-events: none;
+  z-index: 4;
+}
+
+.searchWrong::before {
+  background: radial-gradient(circle, rgba(255, 64, 64, 0.38), transparent 58%);
+  animation: flashWrong 700ms ease;
+}
+
+.searchCorrect::before {
+  background: radial-gradient(circle, rgba(53, 255, 144, 0.34), transparent 58%);
+  animation: flashCorrect 820ms ease;
+}
+
+.searchSign {
+  position: absolute;
+  left: -5%;
+  bottom: 5%;
+  width: 110%;
+  height: 22%;
+  z-index: 15;
+  transform: rotate(-2deg);
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.18));
+}
+
+.resultSign {
+  position: absolute;
+  left: 5%;
+  bottom: 10%;
+  width: 90%;
+  height: 22%;
+  z-index: 5;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.18));
+}
+
+.replayButton {
+  left: 3%;
+  bottom: 0%;
+  width: 94%;
+  height: 12%;
+  animation: buttonFloat 2.8s ease-in-out infinite;
+}
+
+.replayButton:focus-visible,
+.imageButton:focus-visible,
+.hotspot:focus-visible {
+  outline: 3px solid rgba(255, 214, 51, 0.95);
+  outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
   .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+    padding: 8px;
   }
+
+  .frame {
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  .miniSticker {
+    font-size: 0.64rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .startButton,
+  .orangeVisible,
+  .hotspot span,
+  .revealVisible {
+    animation: none;
+  }
+
+  .imageButton,
+  .shadowWhite,
+  .shadowPurple,
+  .shadowBlue,
+  .revealWhite,
+  .revealPurple,
+  .revealBlue {
+    transition: none;
+  }
+}
+
+@keyframes buttonFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes creatureBob {
+
+  0%,
+  100% {
+    transform: translateX(-4%) rotate(-2deg) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-4%) rotate(-2deg) translateY(-10px);
+  }
+}
+
+@keyframes markerPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes wrongShake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes correctPop {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.24);
+  }
+
+  100% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes flashWrong {
+  0% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes flashCorrect {
+  0% {
+    opacity: 0;
+  }
+
+  36% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes revealGlow {
+  0% {
+    filter: drop-shadow(0 0 0 rgba(104, 255, 163, 0));
+  }
+
+  45% {
+    filter: drop-shadow(0 0 22px rgba(104, 255, 163, 0.36));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 0 rgba(104, 255, 163, 0));
+  }
+}
+
+
+@keyframes jump-shaking {
+
+  0%,
+  83.33% {
+    transform: translateY(0) rotate(0);
+  }
+
+  87.5% {
+    transform: translateY(-7px);
+  }
+
+  90% {
+    transform: translateY(-7px) rotate(5deg);
+  }
+
+  92.5% {
+    transform: translateY(-7px) rotate(-5deg);
+  }
+
+  95% {
+    transform: translateY(-7px) rotate(5deg);
+  }
+
+  97.5% {
+    transform: translateY(-7px) rotate(-5deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.riseShake {
+  animation: jump-shaking 6s infinite;
+}
+
+.shakeWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
