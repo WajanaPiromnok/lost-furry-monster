@@ -64,7 +64,7 @@
 
 .posterCluster {
   position: absolute;
-  inset: 16% 12% auto 12%;
+  inset: 25.5% 12% auto 12%;
   width: 76%;
   height: 49%;
   z-index: 2;
@@ -157,12 +157,13 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28));
   transition: transform 180ms ease, filter 180ms ease;
 }
 
 .imageButton:hover {
   transform: translateY(-2px) scale(1.015);
-  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.18));
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28));
 }
 
 .imageButton:active {
@@ -174,7 +175,7 @@
   bottom: 4%;
   width: 94%;
   height: 12%;
-  animation: buttonFloat 2.8s ease-in-out infinite;
+  animation: buttonPulse 2.4s ease-in-out infinite;
 }
 
 .vignette {
@@ -430,7 +431,6 @@
 }
 
 @keyframes buttonFloat {
-
   0%,
   100% {
     transform: translateY(0);
@@ -438,6 +438,17 @@
 
   50% {
     transform: translateY(-5px);
+  }
+}
+
+@keyframes buttonPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
   }
 }
 

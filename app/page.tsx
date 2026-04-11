@@ -120,7 +120,7 @@ export default function Home() {
 
       const resultTimer = window.setTimeout(() => {
         setScreen("result");
-      }, 1850);
+      }, 5000);
 
       return () => {
         window.clearTimeout(revealTimer);
@@ -176,8 +176,7 @@ export default function Home() {
                 alt="สติ๊กเกอร์มอนสเตอร์ขนดกฟูหาย"
                 wrapperClassName={styles.stickerBehind}
               />
-              <span className={`${styles.tape} ${styles.tapeTopLeft}`} />
-              <span className={`${styles.tape} ${styles.tapeTopRight}`} />
+
               <div className={`${styles.shakeWrapper} ${isIdle ? styles.riseShake : ""}`}>
                 <AssetBox
                   src={round.posterSrc}
