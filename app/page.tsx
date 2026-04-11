@@ -35,40 +35,40 @@ const HOTSPOTS: Hotspot[] = [
   {
     id: "orange-monster",
     label: "มอนสเตอร์สีส้มด้านซ้าย",
-    left: "10%",
-    top: "22%",
-    width: "45%",
-    height: "45%",
+    left: "2%",
+    top: "15%",
+    width: "60%",
+    height: "60%",
     monster: "orange",
     shadowSrc: "/pieces/shadow-orange.png",
   },
   {
     id: "left-shadow",
     label: "เงาด้านล่างฝั่งซ้าย",
-    left: "16%",
-    top: "50%",
-    width: "45%",
-    height: "45%",
+    left: "10%",
+    top: "48%",
+    width: "55%",
+    height: "55%",
     monster: "white",
     shadowSrc: "/pieces/shadow-white.png",
   },
   {
     id: "top-right-shadow",
     label: "เงาด้านบนฝั่งขวา",
-    left: "67%",
-    top: "7%",
-    width: "45%",
-    height: "45%",
+    left: "48%",
+    top: "-6%",
+    width: "90%",
+    height: "75%",
     monster: "purple",
     shadowSrc: "/pieces/shadow-purple.png",
   },
   {
     id: "mid-right-shadow",
     label: "เงาด้านขวา",
-    left: "67%",
-    top: "43%",
-    width: "45%",
-    height: "45%",
+    left: "65%",
+    top: "45%",
+    width: "65%",
+    height: "55%",
     monster: "blue",
     shadowSrc: "/pieces/shadow-blue.png",
   },
@@ -120,7 +120,7 @@ export default function Home() {
 
       const resultTimer = window.setTimeout(() => {
         setScreen("result");
-      }, 5000);
+      }, 3000);
 
       return () => {
         window.clearTimeout(revealTimer);
@@ -220,7 +220,7 @@ export default function Home() {
                 : ""
               }`}
           >
-            <LayeredImage src="/pieces/alley-bg.png" alt="" priority className={styles.fullAsset} />
+            <LayeredImage src="/pieces/alley-bg.png" alt="" priority className={`${styles.fullAsset} ${styles.searchBg}`} />
 
             {/* Behind wall: orange & white — pillar overlaps these */}
             <AssetBox
