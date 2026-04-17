@@ -104,14 +104,14 @@ export default function ArtistHistoricalPage() {
 
             {/* Action Buttons (Tapes) */}
             <div className={styles.buttonCluster}>
-              <Link href="/" target="_blank" rel="noopener noreferrer" className={styles.tapeButton}>
+              <button className={styles.tapeButton}>
                 <Image
                   src={getAssetPath("/artist/play-ar.png")}
                   alt=""
                   fill
                   style={{ objectFit: "contain" }}
                 />
-              </Link>
+              </button>
 
               <Link href="https://www.instagram.com/mrkreme?igsh=MTEzZjU5MW1mdDA5cA==" target="_blank" rel="noopener noreferrer" className={styles.tapeButton}>
                 <Image
