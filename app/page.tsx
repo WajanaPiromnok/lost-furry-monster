@@ -25,6 +25,11 @@ type RoundConfig = {
   posterSrc: string;
 };
 
+const assetBasePath =
+  process.env.NODE_ENV === "production"
+    ? "/mrkreme/thailandtour/lost-furry-monster"
+    : "";
+
 const ROUND_VARIANTS: RoundConfig[] = [
   { monster: "orange", posterSrc: "/pieces/poster-orange.png" },
   { monster: "purple", posterSrc: "/pieces/poster-purple.png" },
@@ -201,7 +206,7 @@ export default function Home() {
               aria-label="เริ่มค้นหา"
             >
               <Image
-                src="/pieces/button-start.png"
+                src={withBasePath("/pieces/button-start.png")}
                 alt=""
                 fill
                 className={styles.asset}
@@ -289,8 +294,8 @@ export default function Home() {
                     top: hotspot.top,
                     width: hotspot.width,
                     height: hotspot.height,
-                    maskImage: `url(${hotspot.shadowSrc})`,
-                    WebkitMaskImage: `url(${hotspot.shadowSrc})`,
+                    maskImage: `url(${withBasePath(hotspot.shadowSrc)})`,
+                    WebkitMaskImage: `url(${withBasePath(hotspot.shadowSrc)})`,
                     maskSize: "contain",
                     WebkitMaskSize: "contain",
                     maskRepeat: "no-repeat",
@@ -300,7 +305,7 @@ export default function Home() {
                   }}
                   onClick={() => handleHotspotSelect(hotspot)}
                 >
-                  <span>?</span>
+                  <QuestionMarkIcon className={styles.hotspotIcon} />
                 </button>
               );
             })}
@@ -335,7 +340,7 @@ export default function Home() {
               aria-label="เล่นอีกครั้ง"
             >
               <Image
-                src="/pieces/button-replay.png"
+                src={withBasePath("/pieces/button-replay.png")}
                 alt=""
                 fill
                 className={styles.asset}
@@ -361,11 +366,11 @@ function LayeredImage({
   src: string;
 }) {
   return (
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      priority={priority}
+      <Image
+        src={withBasePath(src)}
+        alt={alt}
+        fill
+        priority={priority}
       className={className}
       sizes="(max-width: 480px) 100vw, 430px"
     />
@@ -386,7 +391,7 @@ function AssetBox({
   return (
     <div className={wrapperClassName} style={style}>
       <Image
-        src={src}
+        src={withBasePath(src)}
         alt={alt}
         fill
         className={styles.asset}
@@ -402,4 +407,26 @@ function pickPosterRotate() {
 
 function pickRound(): RoundConfig {
   return ROUND_VARIANTS[Math.floor(Math.random() * ROUND_VARIANTS.length)];
+}
+
+function withBasePath(src: string) {
+  if (!src.startsWith("/")) {
+    return src;
+  }
+
+  return `${assetBasePath}${src}`;
+}
+
+function QuestionMarkIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 100 110"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path d="m52.785 37.504c-7.5781 2.8984-12.48 10.477-12.48 18.723v5.1328c0 1.8906 1.5312 3.4219 3.4219 3.4219h12.105c1.8906 0 3.4219-1.5312 3.4219-3.4219v-5.1328c0-0.66797 0.44531-1.1133 0.66797-1.3359 10.699-4.2344 17.605-14.934 17.16-26.523-0.67188-13.816-12.039-25.184-25.859-25.852-7.5781-0.22266-14.711 2.2305-20.059 7.5781-4.5 4.3125-7.4219 10.043-8.2344 16.129-0.25 1.8555 1.2695 3.4844 3.1406 3.4844h12.875c1.3945 0 2.6289-0.91406 3.0078-2.2578 0.40234-1.4141 1.1875-2.7344 2.3633-3.7578 1.5586-1.5586 3.7891-2.4531 6.2422-2.2305 4.2344 0.22266 7.8008 3.7891 8.0234 8.0234-0.44922 3.5625-2.4531 6.6836-5.7969 8.0195z" />
+      <path d="m61.566 85.598c0 6.5742-5.3281 11.902-11.902 11.902-6.5742 0-11.902-5.3281-11.902-11.902 0-6.5742 5.3281-11.902 11.902-11.902 6.5742 0 11.902 5.3281 11.902 11.902" />
+    </svg>
+  );
 }
