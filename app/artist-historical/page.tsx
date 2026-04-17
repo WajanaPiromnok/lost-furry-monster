@@ -5,13 +5,17 @@ import Image from "next/image";
 import { boonTookMon } from "../fonts";
 import styles from "./artist.module.css";
 
+const BASE_PATH = "/mrkreme/thailandtour/lost-furry-monster";
+const isProd = process.env.NODE_ENV === "production";
+const getAssetPath = (path: string) => (isProd ? `${BASE_PATH}${path}` : path);
+
 export default function ArtistHistoricalPage() {
   return (
     <main className={`${styles.page} ${boonTookMon.variable}`}>
       <div className={styles.frame}>
         {/* Background Wall */}
         <Image
-          src="/artist/wall-bg.png"
+          src={getAssetPath("/artist/wall-bg.png")}
           alt=""
           fill
           priority
@@ -24,7 +28,7 @@ export default function ArtistHistoricalPage() {
             <div className={styles.leftLogos}>
               <div className={`${styles.logoBox} ${styles.thailandLogo}`}>
                 <Image
-                  src="/artist/Thailand.png"
+                  src={getAssetPath("/artist/Thailand.png")}
                   alt="Amazing Thailand"
                   fill
                   className={styles.logoImage}
@@ -33,7 +37,7 @@ export default function ArtistHistoricalPage() {
               <div className={styles.logoDivider}></div>
               <div className={`${styles.logoBox} ${styles.kremeLogo}`}>
                 <Image
-                  src="/artist/Kreme.png"
+                  src={getAssetPath("/artist/Kreme.png")}
                   alt="Signature"
                   fill
                   className={styles.logoImage}
@@ -42,7 +46,7 @@ export default function ArtistHistoricalPage() {
             </div>
             <div className={`${styles.logoBox} ${styles.artXpLogo}`}>
               <Image
-                src="/artist/ArtXP.png"
+                src={getAssetPath("/artist/ArtXP.png")}
                 alt="ART XP"
                 fill
                 className={styles.logoImage}
@@ -54,7 +58,7 @@ export default function ArtistHistoricalPage() {
             {/* Torn Paper Section */}
             <section
               className={styles.tornPaper}
-              style={{ backgroundImage: "url('/artist/BG.png')" }}
+              style={{ backgroundImage: `url('${getAssetPath("/artist/BG.png")}')` }}
             >
               {/* Artist Badge */}
               {/* <div className={styles.artistBadge}>
@@ -101,7 +105,7 @@ export default function ArtistHistoricalPage() {
             <div className={styles.buttonCluster}>
               <button className={styles.tapeButton}>
                 <Image
-                  src="/artist/เล่น AR.png"
+                  src={getAssetPath("/artist/play-ar.png")}
                   alt=""
                   fill
                   style={{ objectFit: "contain" }}
@@ -110,7 +114,7 @@ export default function ArtistHistoricalPage() {
 
               <button className={styles.tapeButton}>
                 <Image
-                  src="/artist/Contact.png"
+                  src={getAssetPath("/artist/Contact.png")}
                   alt=""
                   fill
                   style={{ objectFit: "contain" }}
