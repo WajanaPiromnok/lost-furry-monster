@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { boonTookMon } from "../fonts";
 import styles from "./artist.module.css";
 
@@ -103,23 +104,23 @@ export default function ArtistHistoricalPage() {
 
             {/* Action Buttons (Tapes) */}
             <div className={styles.buttonCluster}>
-              <button className={styles.tapeButton}>
+              <Link href="/" target="_blank" rel="noopener noreferrer" className={styles.tapeButton}>
                 <Image
                   src={getAssetPath("/artist/play-ar.png")}
                   alt=""
                   fill
                   style={{ objectFit: "contain" }}
                 />
-              </button>
+              </Link>
 
-              <button className={styles.tapeButton}>
+              <Link href="https://www.instagram.com/mrkreme?igsh=MTEzZjU5MW1mdDA5cA==" target="_blank" rel="noopener noreferrer" className={styles.tapeButton}>
                 <Image
                   src={getAssetPath("/artist/Contact.png")}
                   alt=""
                   fill
                   style={{ objectFit: "contain" }}
                 />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
