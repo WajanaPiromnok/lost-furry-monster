@@ -125,7 +125,7 @@ export default function Home() {
 
       const resultTimer = window.setTimeout(() => {
         setScreen("result");
-      }, 5000);
+      }, 2500);
 
       return () => {
         window.clearTimeout(revealTimer);
@@ -225,7 +225,7 @@ export default function Home() {
                 : ""
               }`}
           >
-            <LayeredImage src="/pieces/alley-bg.png" alt="" priority className={`${styles.fullAsset} ${styles.searchBg}`} />
+            <LayeredImage src="/pieces/alley-bg-cnx.png" alt="" priority className={`${styles.fullAsset} ${styles.searchBg}`} />
 
             {/* Behind wall: orange & white — pillar overlaps these */}
             <AssetBox
@@ -320,8 +320,38 @@ export default function Home() {
 
         {screen === "result" ? (
           <section className={`${styles.scene} ${styles.resultScene}`}>
+            <header className={styles.headerLogos}>
+              <div className={styles.leftLogos}>
+                <div className={`${styles.logoBox} ${styles.thailandLogo}`}>
+                  <Image
+                    src={withBasePath("/pieces/Thailand.png")}
+                    alt="Amazing Thailand"
+                    fill
+                    className={styles.logoImage}
+                  />
+                </div>
+                <div className={styles.logoDivider}></div>
+                <div className={`${styles.logoBox} ${styles.kremeLogo}`}>
+                  <Image
+                    src={withBasePath("/pieces/Kreme.png")}
+                    alt="Signature"
+                    fill
+                    className={styles.logoImage}
+                  />
+                </div>
+              </div>
+              <div className={`${styles.logoBox} ${styles.artXpLogo}`}>
+                <Image
+                  src={withBasePath("/pieces/ArtXP.png")}
+                  alt="ART XP"
+                  fill
+                  className={styles.logoImage}
+                />
+              </div>
+            </header>
+
             <LayeredImage
-              src="/pieces/result-full.png"
+              src="/pieces/result-full-cnx.png"
               alt="ฉากสรุปผลหลังค้นหามอนสเตอร์สำเร็จ"
               priority
               className={styles.fullAsset}
@@ -332,6 +362,22 @@ export default function Home() {
               alt="Mind the Gap - Lost Furry Monster in Thailand"
               wrapperClassName={styles.resultSign}
             />
+
+            <a
+              href="https://maps.app.goo.gl/AJ9A3ySb9r1BCgMD7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.imageButton} ${styles.mapButton}`}
+              aria-label="ดูแผนที่"
+            >
+              <Image
+                src={withBasePath("/pieces/button-map.png")}
+                alt=""
+                fill
+                className={styles.asset}
+                sizes="(max-width: 480px) 100vw, 150px"
+              />
+            </a>
 
             <button
               type="button"
