@@ -167,7 +167,12 @@ export default function Home() {
       <div className={styles.frame}>
         {screen === "intro" ? (
           <section className={`${styles.scene} ${styles.introScene}`}>
-            <LayeredImage src="/pieces/wall-bg.png" alt="" priority className={styles.fullAsset} />
+            <LayeredImage
+              src="/pieces/wall-bg.png"
+              alt=""
+              priority
+              className={styles.fullAsset}
+            />
 
             <AssetBox
               src="/pieces/sign-find.png"
@@ -182,7 +187,9 @@ export default function Home() {
                 wrapperClassName={styles.stickerBehind}
               />
 
-              <div className={`${styles.shakeWrapper} ${isIdle ? styles.riseShake : ""}`}>
+              <div
+                className={`${styles.shakeWrapper} ${isIdle ? styles.riseShake : ""}`}
+              >
                 <AssetBox
                   src={round.posterSrc}
                   alt="โปสเตอร์มอนสเตอร์หาย"
@@ -192,7 +199,11 @@ export default function Home() {
               </div>
             </div>
 
-            <AssetBox src="/pieces/sticker-left.png" alt="" wrapperClassName={styles.stickerLeft} />
+            <AssetBox
+              src="/pieces/sticker-left.png"
+              alt=""
+              wrapperClassName={styles.stickerLeft}
+            />
             <AssetBox
               src="/pieces/sticker-right.png"
               alt=""
@@ -218,14 +229,20 @@ export default function Home() {
 
         {screen === "search" ? (
           <section
-            className={`${styles.scene} ${styles.searchScene} ${feedback === "wrong"
-              ? styles.searchWrong
-              : feedback === "correct"
-                ? styles.searchCorrect
-                : ""
-              }`}
+            className={`${styles.scene} ${styles.searchScene} ${
+              feedback === "wrong"
+                ? styles.searchWrong
+                : feedback === "correct"
+                  ? styles.searchCorrect
+                  : ""
+            }`}
           >
-            <LayeredImage src="/pieces/alley-bg-cnx.png" alt="" priority className={`${styles.fullAsset} ${styles.searchBg}`} />
+            <LayeredImage
+              src="/pieces/alley-bg-nst.png"
+              alt=""
+              priority
+              className={`${styles.fullAsset} ${styles.searchBg}`}
+            />
 
             {/* Behind wall: orange & white — pillar overlaps these */}
             <AssetBox
@@ -239,7 +256,11 @@ export default function Home() {
               wrapperClassName={`${styles.shadowWhite} ${revealed ? styles.shadowHidden : ""}`}
             />
 
-            <LayeredImage src="/pieces/alley-wall.png" alt="" className={`${styles.fullAsset} ${styles.alleyWall}`} />
+            <LayeredImage
+              src="/pieces/alley-wall.png"
+              alt=""
+              className={`${styles.fullAsset} ${styles.alleyWall}`}
+            />
             <div className={styles.vignette} />
 
             {/* In front of wall: purple & blue */}
@@ -276,39 +297,38 @@ export default function Home() {
               wrapperClassName={`${styles.revealBlue} ${revealed ? styles.revealVisible : ""}`}
             />
 
-            {feedback !== "correct" && HOTSPOTS.map((hotspot) => {
-              const isSelected = hotspot.id === selectedId;
-              const hotspotState =
-                isSelected && feedback === "wrong"
-                  ? styles.hotspotWrong
-                  : "";
+            {feedback !== "correct" &&
+              HOTSPOTS.map((hotspot) => {
+                const isSelected = hotspot.id === selectedId;
+                const hotspotState =
+                  isSelected && feedback === "wrong" ? styles.hotspotWrong : "";
 
-              return (
-                <button
-                  key={hotspot.id}
-                  type="button"
-                  aria-label={`ตรวจสอบ ${hotspot.label}`}
-                  className={`${styles.hotspot} ${hotspotState}`}
-                  style={{
-                    left: hotspot.left,
-                    top: hotspot.top,
-                    width: hotspot.width,
-                    height: hotspot.height,
-                    maskImage: `url(${withBasePath(hotspot.shadowSrc)})`,
-                    WebkitMaskImage: `url(${withBasePath(hotspot.shadowSrc)})`,
-                    maskSize: "contain",
-                    WebkitMaskSize: "contain",
-                    maskRepeat: "no-repeat",
-                    WebkitMaskRepeat: "no-repeat",
-                    maskPosition: "center",
-                    WebkitMaskPosition: "center",
-                  }}
-                  onClick={() => handleHotspotSelect(hotspot)}
-                >
-                  <QuestionMarkIcon className={styles.hotspotIcon} />
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={hotspot.id}
+                    type="button"
+                    aria-label={`ตรวจสอบ ${hotspot.label}`}
+                    className={`${styles.hotspot} ${hotspotState}`}
+                    style={{
+                      left: hotspot.left,
+                      top: hotspot.top,
+                      width: hotspot.width,
+                      height: hotspot.height,
+                      maskImage: `url(${withBasePath(hotspot.shadowSrc)})`,
+                      WebkitMaskImage: `url(${withBasePath(hotspot.shadowSrc)})`,
+                      maskSize: "contain",
+                      WebkitMaskSize: "contain",
+                      maskRepeat: "no-repeat",
+                      WebkitMaskRepeat: "no-repeat",
+                      maskPosition: "center",
+                      WebkitMaskPosition: "center",
+                    }}
+                    onClick={() => handleHotspotSelect(hotspot)}
+                  >
+                    <QuestionMarkIcon className={styles.hotspotIcon} />
+                  </button>
+                );
+              })}
 
             <AssetBox
               src="/pieces/sign-find.png"
@@ -351,7 +371,7 @@ export default function Home() {
             </header>
 
             <LayeredImage
-              src="/pieces/result-full-cnx.png"
+              src="/pieces/result-full-nst.png"
               alt="ฉากสรุปผลหลังค้นหามอนสเตอร์สำเร็จ"
               priority
               className={styles.fullAsset}
@@ -364,7 +384,7 @@ export default function Home() {
             />
 
             <a
-              href="https://maps.app.goo.gl/AJ9A3ySb9r1BCgMD7"
+              href="https://maps.app.goo.gl/qF1ANGZNvpuNHxQb9?g_st=al"
               target="_blank"
               rel="noopener noreferrer"
               className={`${styles.imageButton} ${styles.mapButton}`}
@@ -412,11 +432,11 @@ function LayeredImage({
   src: string;
 }) {
   return (
-      <Image
-        src={withBasePath(src)}
-        alt={alt}
-        fill
-        priority={priority}
+    <Image
+      src={withBasePath(src)}
+      alt={alt}
+      fill
+      priority={priority}
       className={className}
       sizes="(max-width: 480px) 100vw, 430px"
     />
